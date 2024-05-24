@@ -1,0 +1,71 @@
+<div id="drawer" [class.open]="isDrawerOpen"><br>
+    <ul class="list-menu">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+<div class="container" [class.overlap]="isDrawerOpen">
+   
+    <div id="menu-button" (click)="toggleDrawer()">☰</div>
+    <div class="bell-credit">
+        <div class="credit"><img src="assets\logo\credit.png"><pre>50</pre></div>
+        <div class="bell"><span class="material-symbols-outlined" >notifications</span></div>
+    </div>
+        <div class="sub-container">   
+            <div class="ads-div">
+                <div class="wrapperrr">
+                    <div *ngFor="let ad of ads">
+                        <div class="slidesss">
+                            <img [src]="ad.src">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="sub-divs">
+            <div>
+                    <div class="new-jobs">
+                        <div class="text-div">
+                            <span>No new jobs</span><br><br>
+                            <span>5 jobs missed recently</span>
+                        </div>
+                        <div  class="icon-div">
+                            <span class="material-symbols-outlined" >arrow_forward_ios</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="more-jobs">
+                        
+                        <div class="text-div">
+                            <span>No more jobs today</span><br><br>
+                            
+                        </div>
+                        <div  class="icon-div">
+                            <span class="material-symbols-outlined" >arrow_forward_ios</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="pending-task-div">
+                <span>Pending Tasks</span>
+                <p>
+                    80 subscription jobs . 4days left to buy job pack now
+                </p>
+             
+                <p>
+                    Only 50 credits left.Recharge credits to get new jobs
+                </p>
+            </div>
+            <div class="quick-links">
+                <div>
+                    <span>Quick links</span>
+                </div>
+                <div class="helps">
+                    <span>Help?</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div> 
+  
+    
+

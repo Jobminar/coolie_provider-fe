@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="sub-container">
+        <span class="tittle">Banking details</span><br><br>
+        <div class="sub-div1">
+            <form [formGroup]="bankDetails">
+            <div class="form-div"> 
+                <div>
+                    <label for="accountNumber">Account Number :&nbsp;</label>
+                    <input type="number" id="accountNumber" formControlName="accountNumber"><br>
+                </div>
+                <div>
+                    <label for="PANNumber">PAN Number:&nbsp;</label>
+                    <input type="text" id="PANNumber" formControlName="PANNumber"><br>
+                </div>
+                <div>
+                    <label for="bankName">Bank name :&nbsp;</label>
+                    <input type="text" id="bankName" formControlName="bankName"><br>
+                </div>
+                <div>
+                    <label for="IFSC">IFSC :&nbsp;</label>
+                    <input type="text" id="IFSC" formControlName="IFSC"><br>
+                </div>
+                <div>
+                    <label for="branch">Branch :&nbsp;</label>
+                    <input type="text" id="branch" formControlName="branch"><br>
+                </div>
+            </div>
+            </form>
+            
+         
+        </div>
+        <button type="submit" class="login-btn">Submit</button>
+    </div>
+    <br><br>
+       
+</div>

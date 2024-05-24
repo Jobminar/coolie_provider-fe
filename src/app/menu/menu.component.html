@@ -1,0 +1,65 @@
+<div class="container">
+    <!-- <span class="material-symbols-outlined" >arrow_back</span> -->
+    <div class="sub-container">
+        <div class="profile">
+            <div class="image">
+                <img src="assets\demo\IMG_3034.JPG"> 
+            </div>
+            <div class="details">
+                <span>Bharath Reddy</span> <br>
+                <div class="rating"> <span class="material-symbols-outlined" >star</span>4.89</div>
+                <button>Share visiting card</button>
+            </div>
+        </div>
+        <br>
+        <div class="category">
+            @for (item of options; track $index) {
+                <br>
+            <div>
+                <div>
+                    <span class="material-symbols-outlined" >{{item.icon}}</span> &nbsp;
+                    <span>{{item.name}}</span>
+                </div>
+                <span class="material-symbols-outlined" >arrow_forward_ios</span>
+             
+            </div>
+            <hr>
+
+            }
+        </div>
+        <br>
+        <div class="updates">
+            <div class="finacial">
+                <div class="iconss">
+                    <span class="material-symbols-outlined" >currency_rupee</span>
+                </div>
+                <div>
+                    <span>Financial details</span><br>
+                    GST,PAN and bank information
+                </div>
+            </div>
+            <div class="finacial">
+                <div class="iconss">
+                    <span class="fa fa-whatsapp"></span>
+                </div>
+                <div>
+                    <span>Send whatsApp updates</span><br>
+                    On
+                </div>
+            </div>
+            <div class="finacial">
+                <div class="iconss">
+                    <span class="material-symbols-outlined" >g_translate</span>
+                </div>
+                <div>
+                    <span>Change language</span><br>
+                    English
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="btn">
+          <button><span class="material-symbols-outlined" >power_settings_new</span>&nbsp; Logout</button>
+        </div>
+    </div>
+</div>

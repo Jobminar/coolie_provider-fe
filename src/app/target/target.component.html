@@ -1,0 +1,67 @@
+
+<div class="container">
+ 
+    <div id="menu-button" (click)="toggleDrawer()">☰</div>
+    <div class="bell-credit">
+        <div class="credit"><img src="assets\logo\credit.png"><pre>50</pre></div>
+        <div class="bell"><span class="material-symbols-outlined" >notifications</span></div>
+    </div>
+  
+  <div class="sub-container">
+    <!-- helooo pulaka -->
+      <div>
+        
+        <mat-card class="example-card">
+
+          <section class="example-section left-half-spinner-container">
+            <div class="background-spinner"></div>
+            <mat-progress-spinner
+              class="example-progress-spinner overlay-spinner"
+              [color]="color"
+              [mode]="'determinate'"
+             
+              [value]="calculateProgress(4, 10)">
+            </mat-progress-spinner>
+          </section>
+
+        </mat-card>
+      </div>
+      <div class="section-div">
+          <div class="section">
+            <span class="material-symbols-outlined" >schedule</span>
+            <br>
+            <br>
+            <span class="info">92 HRS</span>
+            <br>
+            <span class="sub-info">Weekend hours</span>
+          </div>
+          <div class="section">
+            <span class="material-symbols-outlined"  [ngStyle]="{'color': divColor}">draft</span> &nbsp;<span style="font-size: 1.4rem;"  [ngStyle]="{'color': divColor}">Min:80%</span>
+            <br>
+            <br>
+            <span class="info">{{minTarget}}%</span>
+            <br>
+            <span class="sub-info">Response rate</span>
+          </div>
+          <div class="section">
+            <span class="material-symbols-outlined"  style="color: red;font-size: 28px;">privacy_tip</span>
+            <br>
+            <br>
+            <span class="info">2</span>
+            <br>
+            <span class="sub-info">Cancellation</span>
+          </div>
+      </div>
+      <br>
+    
+      <div class="credit-balance-div">
+          <span class="sub-info">Credit Balance {{creditBalance}}</span>
+          <br>
+          <br>
+          <div>
+            <button>Buy now</button>
+            <button>See details</button>
+          </div>
+      </div>
+  </div>
+</div>

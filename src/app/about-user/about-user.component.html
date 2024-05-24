@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="sub-container">
+        <span class="tittle">Tell us about yourself</span><br>
+        
+        <form [formGroup]="aboutProvider">
+           <div class="form-div"> 
+                <div>
+                    <label for="name">what's your name</label><br>
+                    <input type="text" placeholder="name" formControlName="providerName" id="names" required>
+                </div>
+                <div>
+                    <label for="work">what work do you do?</label> <br>
+                    <select formControlName="work"  id="providerType" required (click)="navTo()">
+                        <option value="" disabled selected hidden>Select Provider Type</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location"> Pin code ( This Would be your Pin Code of Work )</label><br>
+                    <input type="number" formControlName="pincode" required placeholder="pincode">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

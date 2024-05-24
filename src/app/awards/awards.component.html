@@ -1,0 +1,14 @@
+<div class="container">
+    <span class="material-symbols-outlined" style="float: left;margin-top: 1rem;margin-left: 1rem;">arrow_back</span>&nbsp;&nbsp;<span class="tittle"  style="float: left;margin-top: 1rem;margin-left: 1rem;">Certificate</span>
+    <div class="sub-container">
+        <div class="addPhoto">
+            <span style="font-size: 2.5rem;">+</span>
+            <span>Add photos</span>
+        </div>
+        @for (item of items; track $index) {
+            <div class="awards">
+                <img [src]="item.src">
+            </div>
+        }
+    </div>
+</div>

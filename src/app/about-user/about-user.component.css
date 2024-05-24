@@ -1,0 +1,60 @@
+.container
+{
+    width: 100%;
+    height: 100vh;
+    /* border: 1px solid black; */
+    align-items: center;
+    text-align: center;
+}
+.sub-container
+{
+    width: 90%;
+    position: relative;
+    top: 10%;
+    left: 5%;
+    /* border: 1px solid red; */
+    align-items: center;
+    display: grid;
+    grid-gap: 0.5rem;
+}
+.tittle
+{
+    font-family: 'inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 24px;
+}
+.form-div
+{
+    width: 100%;
+    display: grid;
+    grid-gap: 2.5rem;
+   
+}
+.form-div div{
+    width: 100%;
+    display: grid;
+    /* grid-gap: rem; */
+    text-align: left;
+}
+input,select{
+    width: 100%;
+    height: 3rem;
+    border: 1px solid black;
+    border-radius: 0.8rem;
+    font-size: 1rem;
+}
+input::placeholder{
+    padding-left: 0.5rem;
+}
+label{
+    /* float: left; */
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-family: 'inter';
+    line-height: 19px;
+}
+/* Style the placeholder option */
+#providerType option[value=""][disabled] {
+    display: none; /* Hide the empty placeholder option */
+  }

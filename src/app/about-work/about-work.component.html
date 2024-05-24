@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="sub-container">
+        <span class="tittle">Tell us about your work!</span><br><br>
+        <div class="sub-div1">
+            <pre>Do you have any experience in beauty services?</pre>
+            <hr>
+            <div class="select-div"><span>Yes</span> <input type="radio" name="gender" [(ngModel)]="selectedGender" value="yes"></div>
+            <hr>
+            <div><span>No</span> <input type="radio" name="gender"[(ngModel)]="selectedGender" value="no"></div>
+        </div>
+        <div class="sub-div1">
+            <pre>What is your age?</pre>
+            <hr>
+            <div><span>Less than 18</span> <input type="radio" name="age" [(ngModel)]="selectedAge" value="lessThan18"></div>
+            <hr>
+            <div><span>18-40</span> <input type="radio" name="age"[(ngModel)]="selectedAge" value="18-40"></div>
+            <hr>
+            <div><span>More than 40</span> <input type="radio" name="age"[(ngModel)]="selectedAge" value="moreThan40"></div>
+        </div>
+        <div class="conditions"><input type="checkbox" >Agree with Terms & conditions</div>
+       <br><br>
+        <button type="submit" class="login-btn" (click)="sendResponse()">Continue</button>
+    </div>
+</div>

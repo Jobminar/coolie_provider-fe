@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="header">
+        <div class="arrow_back">
+            <span class="material-symbols-outlined" >arrow_back</span>
+        </div>
+        <div class="logo">
+            <img src="assets\documents\credit bg.png">
+        </div>
+    </div>
+    <div class="credit">
+        <div class="credit-details">
+            <span>50</span><br>
+            <span>Credit balance</span>
+        </div>
+        <div>
+            <button>Add+</button>
+        </div>
+    </div>
+    <div class="sub-container">
+        <div class="cat">
+            <button 
+            *ngFor="let button of buttons"
+            [ngClass]="{'active': activeButton === button}"
+            (click)="setActiveButton(button)">
+            {{ button }}
+            </button>
+        </div>
+    </div>
+</div>
