@@ -1,7 +1,8 @@
 <div class="container">
+    
     <div class="header">
-        <div class="arrow_back">
-            <span class="material-symbols-outlined" >arrow_back</span>
+        <div class="arrow_back" (click)="navBack()">
+            <span class="material-symbols-outlined" style="font-size: 28px;" >arrow_back</span>
         </div>
         <div class="logo">
             <img src="assets\documents\credit bg.png">
@@ -9,11 +10,12 @@
     </div>
     <div class="credit">
         <div class="credit-details">
-            <span>50</span><br>
-            <span>Credit balance</span>
+            
+            <span>Credit balance :</span>&nbsp;
+            <span>50</span>
         </div>
         <div>
-            <button>Add+</button>
+            <button (click)="navToAddCredit()">Add+</button>
         </div>
     </div>
     <div class="sub-container">

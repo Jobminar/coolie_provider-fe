@@ -72,6 +72,8 @@
     height: 70vh;
     /* border: 1px solid rebeccapurple; */
     overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
 }
 .service-div
 {
@@ -82,7 +84,7 @@
 {
     font-size: 1.3rem;
     font-family: 'inter';
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.3px;
 }
 .checkbox

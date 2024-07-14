@@ -3,7 +3,7 @@
         <span class="tittle">Enter Otp</span><br>
         <span class="info-text">Please enter the code we just send to</span>
         <p class="numberss">+91 7989884524</p>
-
+        <br>
                 <!-- verification.component.html -->
         <!-- app.component.html -->
         <form [formGroup]="otp" (ngSubmit)="login()">
@@ -14,6 +14,7 @@
                 <input type="text" maxlength="1" formControlName="inputFour" (input)="onInput($event, 4)" #input4>
             </div>  
             <div class="resend-div">
+              <span>Didn’t receive OTP?</span>
                 @switch (resendToggling) {
                     @case ("resend") {
                         <div (click)="resend()" class="resend">
@@ -26,7 +27,7 @@
                 }
             </div>
         
-            <button type="submit" class="login-btn">Verify</button>
+            <button type="submit" class="login-btn" (click)="login()">Verify</button>
         </form>
         
   

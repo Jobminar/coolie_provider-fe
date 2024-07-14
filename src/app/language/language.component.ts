@@ -1,4 +1,5 @@
 import { Component ,Input} from '@angular/core';
+import { Router  } from '@angular/router';
 
 @Component({
   selector: 'app-language',
@@ -6,6 +7,12 @@ import { Component ,Input} from '@angular/core';
   styleUrl: './language.component.css'
 })
 export class LanguageComponent {
+
+  constructor(private router:Router)
+  {
+
+  }
+
   Language:any=[
     {languages:'English',isChecked: false },
     {languages:'हिंदी',isChecked: false },
@@ -27,5 +34,11 @@ export class LanguageComponent {
       item.isChecked = false;
     });
     selectedItem.isChecked = true;
+    console.log(selectedItem.languages);
   }
+
+  submit(){
+    this.router.navigate(['log-in']);
+  }
+ 
 }

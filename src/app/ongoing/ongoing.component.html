@@ -1,0 +1,19 @@
+<div class="container">
+    <div id="menu-button" (click)="navTo('menu')" >☰</div>
+    <div class="bell-credit">
+        <div class="credit" (click)="navTo('credit')"><img src="assets\logo\credit.png"><pre>50</pre></div>
+        <div class="bell" (click)="navTo('notification')"><span class="material-symbols-outlined" >notifications</span></div>
+    </div>
+    <div class="sub-container">
+        <div class="cat">
+            <button 
+            *ngFor="let button of buttons"
+            [ngClass]="{'active': activeButton === button}"
+            (click)="setActiveButton(button)">
+            {{ button }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- <app-fotter #footer></app-fotter> -->
+<app-fotter></app-fotter>

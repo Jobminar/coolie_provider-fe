@@ -20,7 +20,7 @@
     display: flex;
    position: relative;
    left: 5%;
-   top: 4%;
+   top: 10%;
    border-radius: 0.8rem;
 }
 .arrow_back
@@ -36,6 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-left: 10%; */
 }
 .credit
 {
@@ -93,7 +94,7 @@
 
   .cat button.active,
   .cat button:hover {
-    border-bottom: 1px solid  #D70D09;
+    border-bottom: 2px solid  #f40905;
   }
 
   .cat button {

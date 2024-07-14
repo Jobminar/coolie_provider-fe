@@ -1,5 +1,5 @@
 <div class="container">
-    <span class="material-symbols-outlined" >arrow_back</span>
+    <span class="material-symbols-outlined" (click)="navToBack()" style="font-size: 28px;">arrow_back</span>
     <br>
     <div class="sub-container">
         <div class="profile">
@@ -7,28 +7,46 @@
                 <img src="assets\demo\IMG_3034.JPG"> 
             </div>
             <div class="details">
-                <span>Bharath Reddy</span> <br>
-                <div class="rating"> <span class="material-symbols-outlined" >star</span>4.89</div>
-                <span>Beautician</span>
+                <span>{{userName}}</span>
+                <div class="rating"> 
+                    <!-- <span class="material-symbols-outlined" >star</span> -->
+                    &#9733; 4.89
+                </div>
+                <span *ngFor="let item of workSeleceted" >
+                    {{item.nameOfService}} 
+                </span>
             </div>
         </div>
         
         <div class="category">
-            <div class="ids">
-                <span class="tittle">My Id</span>
-                <span class="tittle">1234567899</span>
-            </div>
-        
-            <hr>
-            <div class="ids">
-                <div>
-                    <span class="tittle">Identity verification</span><br>
-                    <span class="tittle2">Identity Proof and Personal details</span>
+            <div>
+                <div class="ids">
+                    <span class="tittle">My Id</span>
+                    <span class="tittle">1234567899</span>
+                
                 </div>
-                <span class="material-symbols-outlined" >arrow_forward_ios</span>
+                <hr>
             </div>
-    
-            <hr>
+           
+           <div>
+                <div class="ids" (click)="navTo()">
+                    <span class="tittle">Add new service</span>
+                    <span class="tittle">+</span>
+                
+                </div>
+                <hr>
+            </div>
+            <div>
+                <div class="ids">
+                    <div (click)="navToVerification()">
+                        <span class="tittle">Identity verification</span><br>
+                        <span class="tittle2">Identity Proof and Personal details</span>
+                    </div>
+                    <span class="material-symbols-outlined" >arrow_forward_ios</span>
+                </div>
+               
+            </div>
+            
         </div>
         <div class="awards-div">
             <span>Award and certificate </span>
@@ -36,14 +54,14 @@
                 <div><img src="assets\demo\awards.png"></div>
                 <div><img src="assets\demo\certificate2.png"></div>
             </div>
-            <span>View More</span>
+            <span (click)="navToCertificates()">View More</span>
         </div>
         <div class="awards-div">
             <span>Contact Details</span>
            <div> <hr></div>
             <div>
                 <pre>Phone</pre>
-                <span>+91 XXXXXXXXXX</span>
+                <span>{{phoneNumber}}</span>
             </div>
             <div>
                 <pre>Email</pre>
@@ -52,4 +70,5 @@
         </div>
     </div>
 </div>
+<br>
 <br>

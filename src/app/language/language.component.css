@@ -14,7 +14,7 @@
     position: relative;
    top: 10%;
    left: 5%;
-   border: 1px solid black;
+   /* border: 1px solid black; */
 }
 .select-language
 {
@@ -35,7 +35,7 @@ span{
 }
 .language-text
 {
-    font-size:1rem ;
+    font-size:1.3rem ;
     font-family:'inter' ;
     font-weight: 500;
 }
@@ -87,4 +87,19 @@ input[type="checkbox"]:after {
 /* Show the check mark when checked */
 input[type="checkbox"]:checked:after {
     opacity: 1;
+}
+.btn
+{
+    width: 100%;
+    align-items: center;
+}
+button{
+    width: 90%;
+    height: 3.3rem;
+    background-color:  #D70D09;
+    border-radius: 1rem;
+    color:#FFFFFF;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
 }

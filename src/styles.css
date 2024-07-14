@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-slide-toggle .mat-slide-toggle-bar {
+
+    height: 20px !important; /* Set the desired height for the track and use !important */
+  }
+  
+  .custom-slide-toggle .mat-slide-toggle-thumb {
+    height: 2px !important; /* Adjust the thumb height to your preference and use !important */
+    width: 28px !important;  /* Adjust the thumb width to your preference and use !important */
+    top: -4px !important;    /* Center the thumb vertically and use !important */
+  }
+  

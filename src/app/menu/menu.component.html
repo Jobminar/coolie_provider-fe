@@ -1,22 +1,29 @@
+<br><br>&nbsp;&nbsp; &nbsp;<span class="material-symbols-outlined" (click)="navBack()">arrow_back</span><br><br>
 <div class="container">
-    <!-- <span class="material-symbols-outlined" >arrow_back</span> -->
+  
     <div class="sub-container">
         <div class="profile">
             <div class="image">
-                <img src="assets\demo\IMG_3034.JPG"> 
+                <img src="assets\demo\IMG_3034.JPG" class="profile-img"> 
             </div>
             <div class="details">
-                <span>Bharath Reddy</span> <br>
+                <div class="details-div">
+                    <span>{{userName}}</span> 
+                    <span class="package" (click)="navTo('packages')">
+                        <img src="assets/packages/silver coin 1.png" class="package-img">&nbsp;
+                        <pre>Silver</pre>
+                    </span>
+                </div>
                 <div class="rating"> <span class="material-symbols-outlined" >star</span>4.89</div>
-                <button>Share visiting card</button>
+                <button (click)="navToVisiting()">Share visiting card</button>
             </div>
         </div>
         <br>
         <div class="category">
             @for (item of options; track $index) {
                 <br>
-            <div>
-                <div>
+            <div (click)="navTo(item.name)">
+                <div (click)="navTo(item.name)">
                     <span class="material-symbols-outlined" >{{item.icon}}</span> &nbsp;
                     <span>{{item.name}}</span>
                 </div>
@@ -29,7 +36,7 @@
         </div>
         <br>
         <div class="updates">
-            <div class="finacial">
+            <div class="finacial" (click)="navToFinancial()">
                 <div class="iconss">
                     <span class="material-symbols-outlined" >currency_rupee</span>
                 </div>
@@ -44,10 +51,10 @@
                 </div>
                 <div>
                     <span>Send whatsApp updates</span><br>
-                    On
+                    <span (click)="statusChange()">{{whatsAppStaus}}</span>
                 </div>
             </div>
-            <div class="finacial">
+            <div class="finacial" [routerLink]="'/language'" routerLinkActive="language">
                 <div class="iconss">
                     <span class="material-symbols-outlined" >g_translate</span>
                 </div>
@@ -58,7 +65,7 @@
             </div>
         </div>
         <br>
-        <div class="btn">
+        <div class="btn" (click)="logOut()">
           <button><span class="material-symbols-outlined" >power_settings_new</span>&nbsp; Logout</button>
         </div>
     </div>

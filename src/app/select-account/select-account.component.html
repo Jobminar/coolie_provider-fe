@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="sub-container">
+        <div class="sp-div">
+            <span>Hey!</span>
+            <span>Join now</span>
+        </div>
+        <div class="img-div">
+            <img src="assets/logo/start2.png">
+        </div>
+        
+        <div class="slide-toggle">
+            <input type="checkbox" id="toggle" [(ngModel)]="alreadyHasAccount"  (change)="toggleDisplay()">
+            <label for="toggle" class="already-label" style="content:'Iam Existing provider ';" ></label>
+           
+        </div>
+        <div class="slide-toggle">
+            <input type="checkbox" id="toggle1" [(ngModel)]="newIsChecked" (change)="newToggleDisplay()" >
+            <label for="toggle1" class="new-label"></label>
+        </div>
+    </div>
+</div>
+

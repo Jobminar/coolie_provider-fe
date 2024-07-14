@@ -2,6 +2,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { LoginServiceService } from '../login-service.service';
+import { JobDetailsService } from '../job-details.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -17,8 +20,10 @@ export class VerifyComponent {
   otp: FormGroup;
 
   constructor(private form: FormBuilder,
-             
-              private router:Router) { 
+             private logInService:LoginServiceService,
+             private jobDetailsService:JobDetailsService,
+              private router:Router,
+            private http:HttpClient) { 
     this.otp = this.form.group({
       inputOne: '',
       inputTwo: '',
@@ -49,34 +54,29 @@ export class VerifyComponent {
     }
   }
 
-  login() {
-  //   const otpValue = this.otp.value;
-  //   // Send OTP to backend
-  //   const otp=otpValue.inputOne+otpValue.inputTwo+otpValue.inputThree+otpValue.inputFour 
-  //   console.log("OTP:", this.otp.value);
-  //  console.log(otp)
+  async login() {
+   
+    const otpValue = this.otp.value;
+    // Send OTP to backend
+    const otp=otpValue.inputOne+otpValue.inputTwo+otpValue.inputThree+otpValue.inputFour 
+    console.log("OTP:", this.otp.value);
+   console.log(otp)
 
-  //  this.logInService.verifyOtp(otp).subscribe(
-  //   (response)=>{
-  //     console.log("log in done",response)
-  //     Swal.fire({
-  //       icon: 'success',
-  //       title: 'Log in  Successful!',
+   this.logInService.verifyOtp(otp).subscribe(
+    async (response:any)=>{
+      console.log("log in done",response)
+      console.log(response.providerId);
+      await this.logInService.setUser(response.providerId);
+      this.storeUserData()
+      await this.chekingUser();
+     
+      // this.router.navigate(['location'])
       
-  //       timer: 2000, // Timer for 2 seconds
-  //       timerProgressBar: true, // Show timer progress bar
-  //     });
-  //     this.storeUserData()
-  //     this.router.navigate(['location'])
-  //   },(error)=>{
-  //     console.log('error',error);
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Login Failed!',
-  //       text: 'Invalid Otp.',
-  //     });
-  //   }
-  //  )
+    },(error:any)=>{
+      console.log('error',error);
+      alert(error.error.message);
+    }
+   )
   }
 
  
@@ -99,7 +99,9 @@ export class VerifyComponent {
 
 
   resend(){
-   
+   this.logInService.resendOtp();
+   this.resendToggling="countdown";
+  this.startCountdown()
     // const email=this.logInService.emailId
     // const phone=this.logInService.phoneNumber
     // this.logInService.logIn(email,phone).subscribe(
@@ -150,6 +152,39 @@ export class VerifyComponent {
   updateDisplay(totalSeconds: number): void {
     this.minutes = Math.floor(totalSeconds / 60);
     this.seconds = totalSeconds % 60;
+  }
+
+  async chekingUser(){
+   
+    // this.jobDetailsService.getUserDetails(localStorage.getItem('providerId'));
+    // await console.log(this.jobDetailsService.userDetails);
+    //  if (!this.jobDetailsService.userDetails) {
+    //   this.router.navigate(['aboutUser']);
+    // } else {
+    //   this.navTo();
+    // }
+    const id=localStorage.getItem('providerId')
+    const api = `https://api.coolieno1.in/v1.0/providers/provider-details/${id}`;
+  
+      this.http.get<any>(api).subscribe(
+        (data) => {
+          console.log("response", data[0]);
+          console.log( data[0].providerName);
+          this.navTo();  
+        },
+        (error) => {
+          console.log(error);
+          this.router.navigate(['aboutUser']);
+        }
+      );
+  }
+  navTo(){
+
+    if (this.logInService.alreadyHasAccount) {
+      this.router.navigate(['home'])
+    } else {
+      this.router.navigate(['aboutUser'])
+    }
   }
 
 }

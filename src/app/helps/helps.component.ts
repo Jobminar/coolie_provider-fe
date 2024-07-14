@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './helps.component.css'
 })
 export class HelpsComponent {
+  navToBack(){
+    this.location.back();
+  }
 
+  constructor(private location:Location)
+  {
+
+  }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -8,6 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // Import MatProgressSpinnerModule
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +38,32 @@ import { HelpsComponent } from './helps/helps.component';
 import { TargetComponent } from './target/target.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { EarningsComponent } from './earnings/earnings.component';
+import { WaitingPageComponent } from './waiting-page/waiting-page.component';
+import { NotificationComponent } from './notification/notification.component';
+import { CalenderComponent } from './calender/calender.component';
+import { JobHistoryComponent } from './job-history/job-history.component';
+import { AddCreditComponent } from './add-credit/add-credit.component';
+import { FinancialDetailsComponent } from './financial-details/financial-details.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
+import { IdentityVerificationComponent } from './identity-verification/identity-verification.component';
+import { OngoingComponent } from './ongoing/ongoing.component';
+import { DemoComponent } from './demo/demo.component';
+import { InductionComponent } from './induction/induction.component';
 
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { StartComponent } from './start/start.component';
+import { SelectAccountComponent } from './select-account/select-account.component';
+import { CongratsComponent } from './congrats/congrats.component';
+import { DailougeBoxComponent } from './dailouge-box/dailouge-box.component';
+import { PackagesComponent } from './packages/packages.component';
+import { TrainingComponent } from './training/training.component';
+import { WorkCompleteComponent } from './work-complete/work-complete.component';
+import { GetOrderComponent } from './get-order/get-order.component';
+import { ArviedComponent } from './arvied/arvied.component';
+import { StartWorkComponent } from './start-work/start-work.component';
+import { WorkOtpComponent } from './work-otp/work-otp.component';
+import { VerifyAfterWorkComponent } from './verify-after-work/verify-after-work.component';
+import { SubServicesComponent } from './sub-services/sub-services.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,18 +87,49 @@ import { EarningsComponent } from './earnings/earnings.component';
     AwardsComponent,
     HelpsComponent,
     TargetComponent,
-    EarningsComponent
+    EarningsComponent,
+    WaitingPageComponent,
+    NotificationComponent,
+    CalenderComponent,
+    JobHistoryComponent,
+    AddCreditComponent,
+    FinancialDetailsComponent,
+    JobDetailsComponent,
+    IdentityVerificationComponent,
+    OngoingComponent,
+    DemoComponent,
+    InductionComponent,
+    StartComponent,
+    SelectAccountComponent,
+    CongratsComponent,
+    DailougeBoxComponent,
+    PackagesComponent,
+    TrainingComponent,
+    WorkCompleteComponent,
+    GetOrderComponent,
+    ArviedComponent,
+    StartWorkComponent,
+    WorkOtpComponent,
+    VerifyAfterWorkComponent,
+    SubServicesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatInputModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatTabsModule 
+    MatTabsModule,
+    MatDialogModule ,
+    MatSlideToggleModule,
+    RoundProgressModule,
+    MatDatepickerModule ,
+    MatNativeDateModule
   ],
   providers: [
     provideAnimationsAsync()

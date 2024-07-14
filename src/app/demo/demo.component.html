@@ -1,0 +1,108 @@
+<div class="progress-circle">
+    <svg class="progress-circle-inner" viewBox="0 0 100 50">
+      <path class="progress-circle-background" 
+            d="M 10 45 A 40 40 0 0 1 90 45" />
+      <path class="progress-circle-foreground" 
+            d="M 10 45 A 40 40 0 0 1 90 45" 
+            [attr.stroke-dasharray]="circumference" 
+            [attr.stroke-dashoffset]="offset" />
+    </svg>
+    <div class="rating-text">
+      <div class="rating">{{rating}}</div>
+      <div class="rating-label">Rating</div>
+      <div class="min-rating">Min: {{minRating}}</div>
+    </div>
+  </div>
+  
+  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  <img *ngIf="base64Image" [src]="base64Image" alt="Uploaded Image"/>
+  
+
+
+
+  <!-- targettt page -->
+
+<!-- 
+  <div class="container">
+  
+    <div class="top-bar">
+      <button class="menu-btn">&#9776;</button>
+      <div class="top-icons">
+        <div class="coin-balance">
+          <img src="./assets/vector.svg" alt="coin" class="coin-icon" />
+          <span class="balance-text">50</span>
+        </div>
+        <div class="notification-icon-wrapper">
+          <img src="./assets/group-197.svg" alt="Notification Icon" class="notification-icon"/>
+        </div>
+      </div>
+    </div>
+  
+   
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar">
+        <img src="./assets/group-839.svg" alt="progress bar" class="progress-img" />
+        <div class="progress-content">
+          <div class="progress-value">4.89</div>
+          <div class="progress-label">Rating</div>
+          <div class="progress-min-value">Min:4.7</div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class="info-cards-grid">
+
+      <div class="info-card">
+        <div class="info-icon">
+          <img src="./assets/vector-4.svg" alt="clock" />
+        </div>
+        <div class="info-value">92 HRS</div>
+        <div class="info-label">Weekend hours</div>
+      </div>
+    
+      <div class="info-card warning-border">
+        <div class="info-icon">
+          <img src="./assets/group-843.svg" alt="response rate" />
+        </div>
+        <div class="info-value">76.67%</div>
+        <div class="info-label">Response rate</div>
+        <div class="info-warning">Min:80%</div>
+      </div>
+  
+      <div class="info-card">
+        <div class="info-icon">
+          <img src="./assets/group-842.svg" alt="cancellation" />
+        </div>
+        <div class="info-value">2</div>
+        <div class="info-label">Cancellation</div>
+      </div>
+    </div>
+  
+
+    <div class="credit-balance-card">
+      <div class="credit-balance-label">Credit Balance 50</div>
+      <div class="credit-balance-buttons">
+        <button class="buy-now-btn">Buy now</button>
+        <button class="see-details-btn">See details</button>
+      </div>
+    </div>
+    
+    <div class="bottom-navigation">
+      <button class="nav-btn">
+        <img src="./assets/vuesax-bold-home-2.svg" alt="home"/>
+      </button>
+      <button class="nav-btn">
+        <img src="./assets/group-1480.svg" alt="icon"/>
+      </button>
+      <button class="nav-btn">
+        <img src="./assets/group.svg" alt="credit"/>
+      </button>
+      <button class="nav-btn target-btn">
+        <img src="./assets/group-2.svg" alt="target icon" class="target-icon"/>
+        <span class="nav-btn-label">Target</span>
+      </button>
+    </div>
+  </div>
+
+ -->

@@ -5,11 +5,7 @@
     height: 100vh;
     padding: 1rem;
 }
-.material-symbols-outlined
-{
-    /* margin: 1rem; */
-   
-}
+
 .sub-container
 {
     width: 90%;
@@ -35,7 +31,7 @@
     height: 3.5rem;
 
 }
-.profile div img{
+.profile-img{
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -43,6 +39,9 @@
 .details
 {
     width: 70%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     /* border: 1px solid black; */
 }
 .details span, .rating span{
@@ -50,11 +49,40 @@
     font-family:'Inter' sans-serif ;
     font-weight: 500;
 }
+.details-div{
+    /* border: 1px solid red; */
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   /* align-items: center; */
+    
+  }
+  .package{
+    width:max-content;
+    height: 2rem;
+    padding: 0 0.3rem 0 0.3rem;
+    display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+    border: 1px solid black;
+    border-radius: 0.4rem;
+  }
+  .package-img{
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+ .package pre{
+    font-size: 1rem;
+    line-height: 1.7rem;
+    
+  }
+
 .details button
 {
     font-size: 18px;
     border: none;
     background-color: transparent;
+    width: max-content;
     border-bottom: 2px solid black;
     display: flex;
     align-items: center;
@@ -124,3 +152,5 @@
     font-size: 24px;
     color: red;
 }
+
+  

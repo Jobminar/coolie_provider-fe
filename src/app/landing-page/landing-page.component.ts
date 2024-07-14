@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class LandingPageComponent {
     constructor(private router:Router){
       setTimeout(()=>{
-        this.router.navigate(['language'])
+        this.router.navigate(['started'])
       },4000)
     }
 }

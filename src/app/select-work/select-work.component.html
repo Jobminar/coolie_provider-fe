@@ -13,7 +13,7 @@
                         <br>
                         <div class="service-div">
                             <div class="names">{{item.names}}</div>
-                            <div ><input type="checkbox" class="checkbox" [(ngModel)]="item.checked"></div>
+                            <div ><input type="checkbox" class="checkbox" [(ngModel)]="item.checked" (change)="onChange($event, item)"></div>
                         </div>
                     
                     }
@@ -24,11 +24,11 @@
                 <br>
                 <div class="service-div">
                     <div class="names">{{item.names}}</div>
-                    <div ><input type="checkbox" class="checkbox"></div>
+                    <div ><input type="checkbox" class="checkbox"  [(ngModel)]="item.checked"  (change)="onChange($event, item)"></div>
                 </div>
             
             }
         </div>
     </div>
-    <button type="submit" class="login-btn">Continue</button>
+    <button type="submit" (click)="send()" class="login-btn">Continue</button>
 </div>

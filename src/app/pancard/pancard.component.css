@@ -6,12 +6,28 @@
     align-items: center;
     text-align: center;
 }
+.skip-btn{
+    width: max-content;
+    height: max-content;
+    float: right;
+    margin: 1rem;
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    font-family: 'Inter' sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+
+}
 .sub-container
 {
     width: 90%;
     height: max-content;
     position: relative;
-    top: 5%;
+    top: 0%;
     left: 5%;
     /* border: 1px solid red; */
     display: grid;
