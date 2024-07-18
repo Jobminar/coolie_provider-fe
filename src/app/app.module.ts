@@ -64,6 +64,7 @@ import { StartWorkComponent } from './start-work/start-work.component';
 import { WorkOtpComponent } from './work-otp/work-otp.component';
 import { VerifyAfterWorkComponent } from './verify-after-work/verify-after-work.component';
 import { SubServicesComponent } from './sub-services/sub-services.component';
+import { MapBoxComponent } from './map-box/map-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,7 +112,8 @@ import { SubServicesComponent } from './sub-services/sub-services.component';
     StartWorkComponent,
     WorkOtpComponent,
     VerifyAfterWorkComponent,
-    SubServicesComponent
+    SubServicesComponent,
+    MapBoxComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FotterComponent } from '../fotter/fotter.component';
+import { RazorpayService } from '../razorpay.service';
 
 @Component({
   selector: 'app-ongoing',
@@ -12,14 +13,15 @@ export class OngoingComponent {
   @ViewChild('footer') footer!: FotterComponent;
   buttons = ['Ongoing', 'Pending', 'Completed', 'Cancelled'];
   activeButton = 'Ongoing';
-  
+  credits:any;
   navBack(){
     this.location.back();
   }
  
-  constructor(private location:Location,private router:Router)
+  constructor(private location:Location,
+              private router:Router,private razorpayService:RazorpayService)
   {
-
+    this.credits=this.razorpayService.userCredit;
   }
   setActiveButton(button: string) {
     this.activeButton = button;

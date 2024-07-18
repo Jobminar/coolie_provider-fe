@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {  Component,  } from '@angular/core';
 import { Router } from '@angular/router';
+import { RazorpayService } from '../razorpay.service';
 
 @Component({
   selector: 'app-target',
@@ -17,11 +18,13 @@ export class TargetComponent {
   divColor:string='black';
   creditBalance:number=50;
   constructor( private http:HttpClient,
-                private router:Router
+                private router:Router,
+                private razorpayService:RazorpayService
   )
   {
     this.colorChange();
     this. getTarget();
+    this.credits=this.razorpayService.userCredit
   }
 
   colorChange()
@@ -81,7 +84,7 @@ export class TargetComponent {
         this.minTarget=response[0].responseRate
         this.cancelRate=response[0].cancellationRate;
         this.workingHours=response[0].totalWorkingHours;
-        this.credits=response[0].credits;
+        // this.credits=response[0].credits;
       },
       (error)=>{
         console.log(error);

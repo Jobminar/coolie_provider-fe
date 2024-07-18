@@ -471,6 +471,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Chart, ChartItem, registerables } from 'chart.js/auto';
+import { RazorpayService } from '../razorpay.service';
 
 Chart.register(...registerables);
 
@@ -493,10 +494,12 @@ export class EarningsComponent implements OnInit {
   allChartData: any[] = [];
   allLabelsData: any[] = [];
   dateRange: string = '';
-
+  credits:any;
   constructor(private http: HttpClient,
-              private router:Router
+              private router:Router,
+              private razorpayService:RazorpayService
   ) {
+    this.credits=this.razorpayService.userCredit;
     for (let year = 2022; year <= 2030; year++) {
       this.years.push(year);
     }

@@ -105,4 +105,6 @@ export class AddCreditComponent {
     const orderId = 'order_id_from_backend'; // Example order ID from backend
     this.razorPayService.payWithRazorpay(amount, orderId, currency);
   }
+
+  
 }

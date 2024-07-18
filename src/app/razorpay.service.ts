@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import Razorpay from 'razorpay';
 declare var Razorpay: any;
@@ -44,8 +45,9 @@ export class RazorpayService {
 
 
 
-
-  constructor() { }
+  userId=localStorage.getItem('providerId');
+  userCredit:number=0;
+  constructor(private http:HttpClient) { }
 
   payWithRazorpay(amount: number, orderId: string, currency: string) {
     const options = {
@@ -90,6 +92,35 @@ export class RazorpayService {
   }
 
   addingCredit(amount:any){
-    
+    const api='https://api.coolieno1.in/v1.0/providers/provider-credits'
+    const requestBody={
+      userId:this.userId,
+      amount:amount
+    }
+    return this.http.post(api,requestBody).subscribe(
+      (response)=>{
+        console.log(response);
+        
+        this.getNow()
+      },(err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  getCredits(){
+    const api=`https://api.coolieno1.in/v1.0/providers/provider-credits/${this.userId}`
+    return this.http.get<any>(api)
+  }
+
+  getNow(){
+    this.getCredits().subscribe(
+      (res)=>{
+        console.log(res);
+        this.userCredit=res.credits
+      },(err)=>{
+        console.log(err);
+      }
+    )
   }
 }

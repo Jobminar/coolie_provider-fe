@@ -70,7 +70,7 @@
 <div class="container">
     <div id="menu-button" (click)="navToMenu()" >☰</div>
     <div class="bell-credit">
-        <div class="credit" (click)="navToCredit()"><img src="assets\logo\credit.png"><pre>50</pre></div>
+        <div class="credit" (click)="navToCredit()"><img src="assets\logo\credit.png"><pre>{{credits}}</pre></div>
         <div class="bell"><span class="material-symbols-outlined" >notifications</span></div>
     </div>
     <div class="sub-container">
@@ -123,7 +123,7 @@
               &nbsp; &nbsp;
               <div class="credit1">
                     <span class="title">Credits</span>
-                    <span class="title">50</span>
+                    <span class="title">{{credits}}</span>
                 </div>
             </div>
             <span class="material-symbols-outlined" (click)="navToCredit()">chevron_right</span>
@@ -135,7 +135,7 @@
                     <pre>Silver</pre>
                 </span>
             </div>
-            <span class="material-symbols-outlined" (click)="navToCredit()">chevron_right</span>
+            <span class="material-symbols-outlined" (click)="navToPackage()">chevron_right</span>
         </div>
        
     </div>

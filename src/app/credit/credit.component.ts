@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RazorpayService } from '../razorpay.service';
 
 @Component({
   selector: 'app-credit',
@@ -10,16 +11,18 @@ import { Router } from '@angular/router';
 export class CreditComponent {
   buttons = ['All', 'Recharge', 'Expenses', 'Penalties'];
   activeButton = 'All';
-  
+  credits:any;
   navBack(){
     this.location.back();
   }
   navToAddCredit(){
     this.router.navigate(['addCredit']);
   }
-  constructor(private location:Location,private router:Router)
+  constructor(private location:Location,
+              private router:Router,
+              private razorpayServie:RazorpayService)
   {
-
+    this.credits=this.razorpayServie.userCredit;
   }
   setActiveButton(button: string) {
     this.activeButton = button;

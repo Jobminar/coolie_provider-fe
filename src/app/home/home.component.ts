@@ -5,6 +5,8 @@ import { JobDetailsService } from '../job-details.service';
 import { LoginServiceService } from '../login-service.service';
 import { FotterComponent } from '../fotter/fotter.component';
 import { UserDetailsService } from '../user-details.service';
+import { RazorpayService } from '../razorpay.service';
+import { MapBoxService } from '../map-box.service';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
   isAccountVerify:any;
 
   ngOnInit(): void {
+    this.online = this.mapboxService.onlineStatus;
     this.isAccountVerify=this.logInService.isAccountVerify;
       this.trainingService.getingVideos().subscribe(
         (response)=>{
@@ -55,13 +58,16 @@ export class HomeComponent implements OnInit {
               private trainingService: TraniningService,
               private logInService:LoginServiceService,
               private userDetailsService:UserDetailsService,
-              private jobDetailsService:JobDetailsService
+              private jobDetailsService:JobDetailsService,
+              private razorpayService:RazorpayService,
+              private mapboxService:MapBoxService
   ){
    console.log(this.nextWorking.length);
     this.getProviderDetails();
     this.workingDates();
     this.getAvalibility();
     this.getWork()
+    this.getCredit()
   }
   ads:any[]=[
     {
@@ -161,4 +167,86 @@ export class HomeComponent implements OnInit {
   
   }
  
+  credits:number=0
+  getCredit(){
+    this.razorpayService.getCredits().subscribe(
+      (res)=>{
+        console.log(res);
+        this.razorpayService.userCredit=res.credits
+        this.credits=res.credits
+      },(err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+
+  //online and off line status
+
+  online:boolean=false
+  // onlineStatus(event:any){
+  //   const inputElement = event.target as HTMLInputElement;
+  //   if (inputElement.checked) {
+  //     console.log(inputElement.isC);
+      
+  //     this.mapboxService.getCurrentLocation().subscribe(
+  //       location => {
+  //         console.log('Current Location:', location);
+  //         this.sendCordinates(location)
+  //         this.getname(location)
+  //         // Perform any additional actions with the current location
+  //       },
+  //       error => {
+  //         console.error('Error getting current location:', error);
+  //       }
+  //     );
+  //   }
+  //   this.online=!this.online
+  //   console.log(this.online);
+  // }
+  onlineStatus(event: any): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.online = inputElement.checked;
+    this.mapboxService.onlineStatus = this.online;
+
+    if (this.online) {
+      this.mapboxService.getCurrentLocation().subscribe(
+        location => {
+          console.log('Current Location:', location);
+          this.sendCordinates(location);
+          this.getname(location);
+          // Perform any additional actions with the current location
+        },
+        error => {
+          console.error('Error getting current location:', error);
+        }
+      );
+    }
+
+    console.log(this.online);
+  }
+
+  getname(location:any){
+    this.mapboxService.getPlaceNameFromCoordinates(location).subscribe(
+      placeName => {
+        console.log('Place Name:', placeName);
+        this.mapboxService.placeName=placeName
+        // Perform any additional actions with the place name and location
+      },
+      error => {
+        console.error('Error getting place name:', error);
+      }
+    );
+
+  }
+
+  sendCordinates(location:any){
+    this.mapboxService.sendCordinates(location).subscribe(
+      (response)=>{
+        console.log(response);
+      },(err)=>{
+        console.log(err);
+      }
+    )
+  }
 }

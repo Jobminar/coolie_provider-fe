@@ -8,9 +8,17 @@
 <div class="container" [class.overlap]="isDrawerOpen">
     <div class="header">
         <div id="menu-button" (click)="toggleDrawer()">☰</div>
+        <div class="toggle-container">
+            <label class="switch">
+              <input type="checkbox" [checked]="online"  (change)="onlineStatus($event)">
+              <span class="slider"></span>
+            </label>
+            
+        </div>
         <div class="bell-credit">
+           
             <!-- <div class="package"><img src="assets/packages/silver coin 1.png">&nbsp;<pre>Silver</pre></div> -->
-            <div class="credit" (click)="navToCredit()"><img src="assets/logo/credit.png"><pre>50</pre></div>
+            <div class="credit" (click)="navToCredit()"><img src="assets/logo/credit.png"><pre>{{credits}}</pre></div>
             <div class="bell" (click)="navToNotification()"><span class="material-symbols-outlined" >notifications</span></div>
         </div>
     </div>
