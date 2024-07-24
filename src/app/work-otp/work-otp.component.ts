@@ -19,7 +19,7 @@ export class WorkOtpComponent {
             private orderService:OrdersService,
               private router:Router)
   { 
-                this.getOtp()
+    this.getOtp()
     this.otp = this.form.group({
       inputOne: '',
       inputTwo: '',
@@ -50,16 +50,16 @@ export class WorkOtpComponent {
     }
   }
   getOtp(){
-    this.orderService.verifyOtp().subscribe(
-      (response)=>{
-        console.log(response);
-      },
-      (err)=>{
-        console.log(err);
-      }
-    )
+    // this.orderService.verifyOtp().subscribe(
+    //   (response)=>{
+    //     console.log(response);
+    //   },
+    //   (err)=>{
+    //     console.log(err);
+    //   }
+    // )
   }
-  login() {
+  verifyOtp() {
     const otpValue = this.otp.value;
     const otp=otpValue.inputOne+otpValue.inputTwo+otpValue.inputThree+otpValue.inputFour 
     // console.log("OTP:", this.otp.value);
@@ -72,7 +72,7 @@ export class WorkOtpComponent {
         console.log(err);
       }
     )
-    
+    this.router.navigate(['completeWork']);
   }
 
  

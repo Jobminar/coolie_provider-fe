@@ -7,6 +7,8 @@ import { FotterComponent } from '../fotter/fotter.component';
 import { UserDetailsService } from '../user-details.service';
 import { RazorpayService } from '../razorpay.service';
 import { MapBoxService } from '../map-box.service';
+import { HttpClient } from '@angular/common/http';
+import { OrdersService } from '../orders.service';
 
 
 @Component({
@@ -55,19 +57,22 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private router:Router,
+              private http:HttpClient,
               private trainingService: TraniningService,
               private logInService:LoginServiceService,
               private userDetailsService:UserDetailsService,
               private jobDetailsService:JobDetailsService,
               private razorpayService:RazorpayService,
-              private mapboxService:MapBoxService
+              private mapboxService:MapBoxService,
+              private orderService:OrdersService
   ){
    console.log(this.nextWorking.length);
     this.getProviderDetails();
     this.workingDates();
     this.getAvalibility();
-    this.getWork()
-    this.getCredit()
+    this.getWork();
+    this.getCredit();
+    this.getPendingOrders();
   }
   ads:any[]=[
     {
@@ -184,32 +189,19 @@ export class HomeComponent implements OnInit {
   //online and off line status
 
   online:boolean=false
-  // onlineStatus(event:any){
-  //   const inputElement = event.target as HTMLInputElement;
-  //   if (inputElement.checked) {
-  //     console.log(inputElement.isC);
-      
-  //     this.mapboxService.getCurrentLocation().subscribe(
-  //       location => {
-  //         console.log('Current Location:', location);
-  //         this.sendCordinates(location)
-  //         this.getname(location)
-  //         // Perform any additional actions with the current location
-  //       },
-  //       error => {
-  //         console.error('Error getting current location:', error);
-  //       }
-  //     );
-  //   }
-  //   this.online=!this.online
-  //   console.log(this.online);
-  // }
-  onlineStatus(event: any): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.online = inputElement.checked;
+ onlineText:string='Go';
+  onlineStatus(): void {
+    
+    this.online = !this.online
+   
     this.mapboxService.onlineStatus = this.online;
-
+    if (this.onlineText==='Go') {
+      this.onlineText='Off'
+    } else {
+      this.onlineText='Go'
+    }
     if (this.online) {
+      
       this.mapboxService.getCurrentLocation().subscribe(
         location => {
           console.log('Current Location:', location);
@@ -230,6 +222,8 @@ export class HomeComponent implements OnInit {
     this.mapboxService.getPlaceNameFromCoordinates(location).subscribe(
       placeName => {
         console.log('Place Name:', placeName);
+        this.userDetailsService.currentCordinates=location;
+        this.userDetailsService.currentLocation=placeName
         this.mapboxService.placeName=placeName
         // Perform any additional actions with the place name and location
       },
@@ -240,12 +234,45 @@ export class HomeComponent implements OnInit {
 
   }
 
+  
   sendCordinates(location:any){
     this.mapboxService.sendCordinates(location).subscribe(
       (response)=>{
         console.log(response);
       },(err)=>{
         console.log(err);
+      }
+    )
+  }
+
+  sendTokens(){
+    const api=''
+    const requestBody={}
+    this.http.post(api,requestBody).subscribe(
+      (response)=>{
+        console.log(response);
+      },(err)=>{
+        console.log(err);
+      }
+    )
+  }
+
+  // getting the pending orders
+  noOfPendingOrders:number=0;
+  getPendingOrders(){
+    this.orderService.orderHistory().subscribe(
+      {
+        next:(response)=>{
+          console.log(response);
+          const pending='InProgress'
+          const filter=response.filter((i:any)=>{
+           return i.status.toLowerCase().includes(pending.toLowerCase())
+          })
+          this.noOfPendingOrders=filter.length
+        },
+        error:(err)=>{
+          console.log(err);
+        }
       }
     )
   }

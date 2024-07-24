@@ -17,7 +17,7 @@ export class MapBoxService {
   watchId: number | undefined;
   directionsLayerId: string = 'directions';
   popup: mapboxgl.Popup | undefined;
-
+  userCordinates:[number,number]=[0,0];
   // onlineStatus
   private _onlineStatus: boolean = false;
 
@@ -30,11 +30,13 @@ export class MapBoxService {
   }
 
   constructor(@Inject(PLATFORM_ID) private platformId: object,
-              private http:HttpClient) {}
+              private http:HttpClient) {
+                mapboxgl.accessToken = "pk.eyJ1IjoiY29vbGllbm8xLWFkbWluIiwiYSI6ImNsdWZjZGR1ZzBtZHcybnJvaHBiYTd2NzMifQ.TQ6FrqUIUUWv7J7n75A3tQ";
+              }
 
   ngOnInit() {
     
-      mapboxgl.accessToken = "pk.eyJ1IjoiY29vbGllbm8xLWFkbWluIiwiYSI6ImNsdWZjZGR1ZzBtZHcybnJvaHBiYTd2NzMifQ.TQ6FrqUIUUWv7J7n75A3tQ";
+     
       this.initializeMap();
     
   }
@@ -45,11 +47,12 @@ export class MapBoxService {
     }
   }
 
+  mapStatus:any;
   initializeMap() {
-    if (isPlatformBrowser(this.platformId)) {
+   
       navigator.geolocation.getCurrentPosition(position => {
         this.currentLocation = [position.coords.longitude, position.coords.latitude];
-
+        console.log(this.currentLocation,"currect location");
         this.map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v11',
@@ -71,11 +74,16 @@ export class MapBoxService {
           if (this.userMarker) {
             this.userMarker.setLngLat(newLocation);
           }
+
+          if (this.userCordinates[0]!=0) {
+            this.addDestinationMarker(this.userCordinates)
+          }
         }, error => {
           console.error('Error watching position:', error);
         });
       });
-    }
+    
+   
   }
 
   navigateToPlace() {
@@ -113,6 +121,7 @@ export class MapBoxService {
   }
 
   addDestinationMarker(coordinates: [number, number]) {
+    console.log(coordinates);
     if (this.destinationMarker) {
       this.destinationMarker.remove();
     }
@@ -194,10 +203,11 @@ export class MapBoxService {
   //sending the cordinates to backend
   getCurrentLocation(): Observable<[number, number]> {
     return new Observable(observer => {
-      if (isPlatformBrowser(this.platformId)) {
+     
         navigator.geolocation.getCurrentPosition(
           position => {
             const location: [number, number] = [position.coords.longitude, position.coords.latitude];
+            console.log("current location inside getcurrent location",location);
             this.getPlaceNameFromCoordinates(location)
             observer.next(location);
             observer.complete();
@@ -206,9 +216,7 @@ export class MapBoxService {
             observer.error(error);
           }
         );
-      } else {
-        observer.error('Platform is not browser');
-      }
+     
     });
   }
 
@@ -249,9 +257,12 @@ export class MapBoxService {
     const userID=localStorage.getItem('providerId')
     const requestBody={
       userId:userID,
-      cordinates:location,
+      longitude:location[0],
+      latitude:location[1]
+      
       
     }
+
     console.log(requestBody);
     return this.http.post(api,requestBody)
   }

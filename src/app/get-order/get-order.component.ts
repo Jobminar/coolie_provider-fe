@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JobDetailsService } from '../job-details.service';
 import { OrdersService } from '../orders.service';
+import { GetOrdersService } from '../get-orders.service';
+import { MapBoxService } from '../map-box.service';
 
 @Component({
   selector: 'app-get-order',
@@ -11,9 +13,30 @@ import { OrdersService } from '../orders.service';
 export class GetOrderComponent implements OnInit,OnDestroy{
   timeLeft: number = 120; // 2 minutes in seconds
   interval: any;
+  order:any;
+  
+  providerCurrentLocation:any;
+  workSeleceted:any
+  extractedDetails: any[]=[]
+  parsedOrder: any;
+  constructor(private router:Router,
+              private jobDetailsService:JobDetailsService,
+              private orderService:OrdersService,
+              private mapboxService:MapBoxService,
+              private getOrderService:GetOrdersService){
 
+    // console.log(this.jobDetailsService.workDetails);
+    
+     this.workSeleceted=this.jobDetailsService.workDetails
+      // this.getOrder()
+    // this.router.navigate(['getOrder'])
+  }
   ngOnInit() {
     this.startTimer();
+    this.providerCurrentLocation=this.mapboxService.placeName
+    this.order=this.getOrderService.order
+    
+    this.details()
   }
 
   startTimer() {
@@ -60,100 +83,61 @@ export class GetOrderComponent implements OnInit,OnDestroy{
   ]
 
 
-  workSeleceted:any
-  constructor(private router:Router,
-              private jobDetailsService:JobDetailsService,
-            private orderService:OrdersService){
+// working on order
+userAddress:any;
+userCoordinates:[number,number]=[0,0]
 
-    console.log(this.jobDetailsService.workDetails);
-    
-     this.workSeleceted=this.jobDetailsService.workDetails
-      this.getOrder()
-    // this.router.navigate(['getOrder'])
-  }
+details(): void {
+  this.order=JSON.parse(this.order.order);
+  this.orderService.oredrDetails=this.order
+  this.parsedOrder = this.order
+  this.getCartId(this.order)
+  // Extract required fields and push into the new array
+  this.extractedDetails.push({
+    fullAddress: `${this.parsedOrder.addressId.city}, ${this.parsedOrder.addressId.state}, ${this.parsedOrder.addressId.pincode}`,
+    latitude: this.parsedOrder.addressId.latitude,
+    longitude: this.parsedOrder.addressId.longitude,
+    categoryName: this.parsedOrder.items[0].categoryId.name,
+    subCategoryName: this.parsedOrder.items[0].subCategoryId.name,
+    quantity: this.parsedOrder.items[0].quantity,
+    scheduledDate: this.parsedOrder.items[0].scheduledDate,
+    price: this.parsedOrder.items[0].serviceId.serviceVariants[0].price
+  });
+
+  console.log(this.extractedDetails);
+  this.userCoordinates=[this.extractedDetails[0].longitude,this.extractedDetails[0].latitude]
+  this.orderService.userFullAddress=this.extractedDetails[0].fullAddress;
+  this.mapboxService.userCordinates=this.userCoordinates;
+
+}
 
   orderIds:any[]=[]
-  getOrder(){
-    console.log("inside");
-    let workingId:any[]=[]
-    this.workSeleceted.forEach((i: any)=>{
-      workingId.push(i.id);
-    })
-    console.log(workingId);
-    this.orderService.getOrder(workingId).subscribe(
-      (response)=>{
-        console.log(response);
-        this.getCartId(response.data[0])
-      },(error)=>{
-        console.log(error);
-      }
-    )
-  }
+ 
 
-  nameOfService:string='';
-  nameOfCategory:string='';
-  price:number=0;
-  quantity:number=0;
+ 
   acceptStatus:any;
 
-  // getCartId(data: any) {
-  //   let order = data.cartId.items;
-  //   console.log(order);
   
-  //   const displayCategory = (index: number) => {
-  //     if (index < order.length) {
-  //       const element = order[index];
-  //       this.nameOfCategory = element.categoryId.name;
-  //       this.nameOfService= element.serviceId.name
-  //       this.price=element.serviceId.serviceVariants[0].price;
-  //       this.quantity=element.quantity
-  //       console.log(this.nameOfCategory);
-  //       if (this.acceptStatus) {
-  //         return
-  //       }
-  //       else{
-  //         console.log("next");
-  //         index + 1
-  //       }
-  //       setTimeout(() => displayCategory(index + 1), 5000);
-  //       // Schedule the next category to be displayed after 5 seconds
-  //       this.acceptStatus=null;
-  //     }
-  //   };
-  
-  //   // Start the display chain
-  //   displayCategory(0);
-  // }
   getCartId(data: any) {
-    let order = data.cartId.items;
-    console.log(order);
-    let orderId=data._id;
+    
+    let orderId=this.order._id;
+    
     const displayCategory = (index: number) => {
-      if (index < order.length) {
-        this.orderService.oredrDetails=[];
-        const element = order[index];
-        this.nameOfCategory = element.categoryId.name;
-        this.nameOfService = element.serviceId.name;
-        this.price = element.serviceId.serviceVariants[0].price;
-        this.quantity = element.quantity;
-        this.orderService.oredrDetails.push({"category":this.nameOfCategory,
-          "name":this.nameOfService,"price":this.price,"quantity":this.quantity}
-        )
-        console.log(this.nameOfCategory);
-  
+     
         let checkInterval = setInterval(() => {
-          if (this.acceptStatus !== null) {
+          if (this.acceptStatus) {
             clearInterval(checkInterval);
             if (this.acceptStatus) {
+              this.acceptStatus=false
               // User accepted, exit the loop
               this.acceptedOrder(orderId)
               console.log("User accepted, exiting the loop");
-              this.acceptStatus = null; // Reset acceptStatus
+               // Reset acceptStatus
               return;
             } else {
               // User declined, proceed to the next index
               console.log("User declined, moving to the next item");
-              this.acceptStatus = null; // Reset acceptStatus
+              this.acceptStatus = false; // Reset acceptStatus
               displayCategory(index + 1);
             }
           }
@@ -167,7 +151,7 @@ export class GetOrderComponent implements OnInit,OnDestroy{
             displayCategory(index + 1);
           }
         }, 120000);
-      }
+      
     };
   
     // Start the display chain
@@ -186,6 +170,7 @@ export class GetOrderComponent implements OnInit,OnDestroy{
     console.log("declined");
     this.acceptStatus=false
     this.timeLeft=120
+    this.router.navigate(['home']);
   }
 
   acceptedOrder(element:any){
@@ -193,7 +178,8 @@ export class GetOrderComponent implements OnInit,OnDestroy{
     this.orderService.accept(element).subscribe(
       (response: any)=>{
         console.log(response);
-        this.orderService.orderIds=element
+        this.orderService.orderIds=response.orderHistoryId
+        
         this.router.navigate(['arrived']);
       },(err)=>{
         console.log(err);

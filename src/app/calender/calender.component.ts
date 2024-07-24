@@ -537,6 +537,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { JobDetailsService } from '../job-details.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { UserDetailsService } from '../user-details.service';
 
 @Component({
   selector: 'app-calender',
@@ -572,7 +573,8 @@ export class CalenderComponent {
     private el: ElementRef,
     private http: HttpClient,
     public dialog: MatDialog,
-    private jobDetailsService: JobDetailsService
+    private jobDetailsService: JobDetailsService,
+    private userService:UserDetailsService
   ) {}
 
   extend() {
@@ -613,10 +615,17 @@ export class CalenderComponent {
   ];
 
   getSelectedService() {
+    this.userService.getWork(localStorage.getItem('providerId')).subscribe(
+      (response)=>{
+          console.log(response);
+        //  console.log(response[0].works);
+        
+         this.services=response[0].works
+      },(err)=>{
+        console.log(err);
+      }
+    )
     
-    const work=JSON.parse(this.jobDetailsService.userDetails[0].work[0])
-    console.log(work);
-    this.services = work;
     // const demo = { nameOfService: 'cleaning' };
     // this.services.push(demo);
   }

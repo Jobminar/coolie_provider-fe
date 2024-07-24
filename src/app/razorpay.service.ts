@@ -54,13 +54,11 @@ export class RazorpayService {
       key: 'rzp_test_b8XfUOQ4u8dlSq', // Replace with your Razorpay key
       amount: amount* 100, // amount in paise
       currency: currency,
-      name: 'Kissan Mart', // your business name
+      name: 'Coolie no.1', // your business name
       description: 'Test Transaction',
       image: 'assets/location/logo-v3 3.png',
-      order_id: "", // This will be created from backend
-      payment_capture: '1', // Auto capture enabled
-      capture_after: '3600',
-      callback_url: 'https://eneqd3r9zrjok.x.pipedream.net/',
+      // order_id: "12121212", // This will be created from backend
+      
       handler: (response: any) => {
         // handle payment success
         console.log(response);

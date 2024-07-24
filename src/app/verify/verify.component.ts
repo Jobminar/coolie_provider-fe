@@ -168,8 +168,8 @@ export class VerifyComponent {
   
       this.http.get<any>(api).subscribe(
         (data) => {
-          console.log("response", data[0]);
-          console.log( data[0].providerName);
+          console.log("response", data);
+          console.log( data.providerName);
           this.navTo();  
         },
         (error) => {

@@ -65,6 +65,15 @@ import { WorkOtpComponent } from './work-otp/work-otp.component';
 import { VerifyAfterWorkComponent } from './verify-after-work/verify-after-work.component';
 import { SubServicesComponent } from './sub-services/sub-services.component';
 import { MapBoxComponent } from './map-box/map-box.component';
+
+
+// fire base
+
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -131,7 +140,9 @@ import { MapBoxComponent } from './map-box/map-box.component';
     MatSlideToggleModule,
     RoundProgressModule,
     MatDatepickerModule ,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireMessagingModule
   ],
   providers: [
     provideAnimationsAsync()

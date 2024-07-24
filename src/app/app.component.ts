@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import { Location } from '@angular/common';
+import { GetOrdersService } from './get-orders.service';
 const { App } = Plugins;
 @Component({
   selector: 'app-root',
@@ -9,11 +10,19 @@ const { App } = Plugins;
 })
 export class AppComponent {
   title = 'CoolieNo.1_Provider';
-  constructor(private location:Location){
+  constructor(private location:Location,
+    private messagingService: GetOrdersService,
+    
+  
+  ){
 
   }
   ngOnInit() {
+
+    this.messagingService.requestPermission();
+    this.messagingService.listenForMessages()
     this.registerBackButtonListener();
+   
   }
 
   registerBackButtonListener() {
@@ -29,5 +38,6 @@ export class AppComponent {
       }
     });
   }
+  
 
 }

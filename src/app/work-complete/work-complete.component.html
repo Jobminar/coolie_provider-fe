@@ -6,10 +6,10 @@
         @for (item of work; track $index) {
             <div class="details-div">
                 <span class="about">
-                    <span  class="highlight-text">{{item.quantity}} X {{item.name}}</span> 
-                    <span  class="highlight-text">{{item.price}}</span>
+                    <span  class="highlight-text">{{item.quantity}} X {{item.categoryId.name}}</span> 
+                    <span  class="highlight-text">{{item.serviceId.serviceVariants[0].price}}</span>
                 </span>
-                <span   class="sub-tittle">{{item.quantity}} X {{item.name}}</span>
+                <span   class="sub-tittle">{{item.quantity}} X {{item.subCategoryId.name}}</span>
                 <div class="line"></div>
             </div>
         }

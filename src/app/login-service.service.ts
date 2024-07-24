@@ -44,6 +44,15 @@ export class LoginServiceService {
       },
       (error) => {
         console.log(error);
+        console.log(error.error);
+        console.log(error.error.message);
+        if (error.error.message==="User does not exist. Please sign up first.") {
+          alert("Account was not found. Please signUp first.");
+          this.router.navigate(['selectAccount'])
+          
+        } else {
+          alert("something went wrong.Please retry again");
+        }
       }
     );
   }
@@ -137,7 +146,7 @@ export class LoginServiceService {
 // get api for sub categories
   categoryId:any;
   getSubCategory(){
-    const api=`http://13.126.118.3:3000/v1.0/core/sub-categories/category/${this.categoryId}`
+    const api=`https://api.coolieno1.in/v1.0/core/sub-categories/category/${this.categoryId}`
     return this.http.get<any>(api);
   }
   userFromServer: any = [];
@@ -169,7 +178,7 @@ export class LoginServiceService {
   // }
 
   sendWorkDetails(){
-    const api=`http://13.126.118.3:3000/v1.0/providers/work`
+    const api=`https://api.coolieno1.in/v1.0/providers/work`
     // console.log(this.workDetails);
     const work=this.workDetails.flat();
     const userId=localStorage.getItem('providerId')
@@ -235,7 +244,7 @@ export class LoginServiceService {
       works:work
     }
     console.log("work in service",requestBody);
-    const api = `http://13.126.118.3:3000/v1.0/providers/work/${id}`;
+    const api = `https://api.coolieno1.in/v1.0/providers/work/${id}`;
     this.http.put(api, requestBody).subscribe(
       (response) => {
         console.log(response);

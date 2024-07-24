@@ -12,15 +12,33 @@ export class WorkCompleteComponent {
   constructor(private orderService: OrdersService,
               private router:Router
   ) {
-    this.work = this.orderService.oredrDetails;
-
-    console.log(this.work);
-    this.work.forEach((i: any) => {
-      this.total = this.total + i.price;
-    });
+    // console.log( this.orderService.oredrDetails);
+    // const order:any = this.orderService.oredrDetails;
+    // console.log(order);
+    // this.work=order.order?.items;
+    // console.log(order.order.items);
+    // this.work.forEach((i: any) => {
+    //   this.total = this.total + i.price;
+    // });
+    this.getWorkDetails();
   }
   work: any = [];
   alreadyHasAccount = '';
+
+  getWorkDetails(){
+    const order:any = this.orderService.oredrDetails;
+   
+    console.log(order);
+    for (let index = 0; index < order.items.length; index++) {
+      const element = order.items[index];
+      this.work.push(element)
+    }
+   
+    console.log(order.items);
+    this.work.forEach((i: any) => {
+      this.total = this.total + i.serviceId.serviceVariants[0].price;
+    });
+  }
   toggleDisplay() {
     this.orderService.completeOrder().subscribe(
       (response)=>{

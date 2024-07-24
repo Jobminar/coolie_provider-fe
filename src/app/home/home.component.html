@@ -8,13 +8,13 @@
 <div class="container" [class.overlap]="isDrawerOpen">
     <div class="header">
         <div id="menu-button" (click)="toggleDrawer()">☰</div>
-        <div class="toggle-container">
+        <!-- <div class="toggle-container">
             <label class="switch">
-              <input type="checkbox" [checked]="online"  (change)="onlineStatus($event)">
+              <input type="checkbox" [checked]="online"  (change)="onlineStatus()">
               <span class="slider"></span>
             </label>
             
-        </div>
+        </div> -->
         <div class="bell-credit">
            
             <!-- <div class="package"><img src="assets/packages/silver coin 1.png">&nbsp;<pre>Silver</pre></div> -->
@@ -59,7 +59,12 @@
                     <div class="more-jobs">
                         
                         <div class="text-div1">
+                            @if (noOfPendingOrders===0) {
                             <span>No more jobs today</span> 
+                            }
+                            @else {
+                                <span>{{noOfPendingOrders}} more jobs today</span> 
+                            }
                         </div>
                         <div  class="icon-div">
                             <span class="material-symbols-outlined" >arrow_forward_ios</span>
@@ -104,10 +109,12 @@
                 </div>
             </div>
         </div>
-        </div>
-    </div> 
+    </div>
+</div> 
 
-
+<div class="online" (click)="onlineStatus()">
+    <span>{{onlineText}}</span>
+</div>
    
     <!-- <div style="height: 5rem;"></div> -->
     <router-outlet></router-outlet>

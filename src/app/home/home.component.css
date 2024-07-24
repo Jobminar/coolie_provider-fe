@@ -55,74 +55,6 @@
     font-weight: 400;
     font-family:'Roboto Condensed' ;
   }
-  /* online off line toggle */
-
-  .toggle-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .label-text {
-    margin-left: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #06e961;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  
-  /* For the rounded slider */
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
   
   /* toggle completed here=============== */
   .bell-credit
@@ -376,4 +308,57 @@ video {
   height: 10rem;
   object-fit: cover;
   cursor: pointer; /* Set the cursor style to pointer */
+}
+
+.online{
+  /* background-color: #37e50b; */
+  background-color: rgba(239, 5, 5, 0.929);
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 82%;
+  left: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  overflow: hidden;
+}
+
+.online::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border: 0.2px solid white;
+  border-radius: 50%;
+  /* background: rgba(230, 4, 4, 0.3); */
+  animation: wave 1.9s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wave {
+  50% {
+      transform: scale(1);
+      width: 50%;
+      height: 50%;
+  }
+  60% {
+    transform: scale(1.5);
+    width: 60%;
+    height: 60%;
+}
+70% {
+  transform: scale(2);
+  width: 70%;
+  height: 70%;
+}
+  100% {
+      transform: scale(2.5);
+      width: 100%;
+      height: 100%;
+  }
 }

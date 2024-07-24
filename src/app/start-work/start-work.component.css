@@ -29,9 +29,9 @@
     color: rgba(255, 255, 255, 1);
     
 }
-.map{
+#map{
     width: 100%;
-    height: max-content;
+    height: 20rem;
 }
 .map img{
     width: 100%;

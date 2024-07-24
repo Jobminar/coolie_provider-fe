@@ -17,6 +17,9 @@ export class UserDetailsService {
 
   workResponseId:any;
   workResponse:any=[]
+
+  currentLocation:any;
+  currentCordinates:any;
   getWork(id:any){
     const aaa=`${this.api}/${`providers/work/${id}`}`
     console.log(aaa);

@@ -25,30 +25,34 @@
         <div class="address">
             <p>
                 <span class="location-txt">My location</span>
-                <span class="location">30-653/P, Miyapur, 500133</span>
+                <span class="location">{{providerCurrentLocation}}</span>
             </p>
             <br>
             <p>10Km</p>
             <br>
             <p>
                 <span class="location-txt">User location</span>
-                <span class="location">Durga nagar, Dilshuknagar, 500133</span>
+                <span class="location">{{extractedDetails[0].fullAddress}}</span>
             </p>
         </div>
     </div>
     <div class="service-details">
         <span>
             <span class="main-Text">Category Type :</span>
-            <span class="value-Text">{{nameOfCategory}}</span>
+            <span class="value-Text">{{extractedDetails[0].categoryName}}</span>
         </span>
         <span>
             <span class="main-Text">Service Type :</span>
-            <span class="value-Text">{{nameOfCategory}}</span> 
+            <span class="value-Text">{{extractedDetails[0].categoryName}}</span> 
         </span>
        
         <span>
             <span class="main-Text">Price :</span>
-            <span class="value-Text">{{ price}} X {{quantity}}</span> 
+            <span class="value-Text">{{extractedDetails[0].price}} X {{extractedDetails[0].quantity}}</span> 
+        </span>
+        <span>
+            <span class="main-Text">Schedule :</span>
+            <span class="value-Text">{{extractedDetails[0].scheduledDate}} </span> 
         </span>
     </div>
     <div class="acc-rej-btns">
