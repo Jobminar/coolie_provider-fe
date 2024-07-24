@@ -41,15 +41,16 @@ export class GetOrdersService {
     console.log("listing...................");
     this.afMessaging.messages.subscribe((message) => {
       console.log(message);
+      this.router.navigate(['getOrder'])
       console.log(message.notification);
       console.log(message.data?.['order']);
       console.log(message.notification?.title);
-      if (message.notification?.title ==='New Order!') {
-        this.order=message.data
-        console.log("object");
-        this.router.navigate(['getOrder'])
-      }
-     alert(message)
+      // if (message.notification?.title ==='New Order!') {
+      //   this.order=message.data
+      //   console.log("object");
+      //   this.router.navigate(['getOrder'])
+      // }
+    //  alert(message)
     },
   (err)=>{
     console.log(err);

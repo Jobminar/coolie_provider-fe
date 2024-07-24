@@ -11,7 +11,7 @@ import { OrdersService } from '../orders.service';
 export class NotificationComponent {
 
   constructor(private router:Router){
-    this.router.navigate(['getOrder'])
+    // this.router.navigate(['getOrder'])
   }
   //   workSeleceted:any
   // constructor(private router:Router,
