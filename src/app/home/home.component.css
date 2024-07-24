@@ -159,7 +159,7 @@
   object-fit: cover;
 }
 .availability-div{
-  width: calc(100% -0.5rem);
+  width: 98%;
   height: max-content;
   display: grid;
   grid-template-columns: 35% 35%  20%;
