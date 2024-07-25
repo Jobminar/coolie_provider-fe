@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrdersService } from '../orders.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-work-otp',
@@ -15,9 +16,13 @@ export class WorkOtpComponent {
   @ViewChild('input4') input4!: ElementRef 
   otp: FormGroup;
 
+  navTOBack(){
+    this.location.back()
+  }
   constructor(private form: FormBuilder,
             private orderService:OrdersService,
-              private router:Router)
+              private router:Router,
+            private location:Location)
   { 
     this.getOtp()
     this.otp = this.form.group({

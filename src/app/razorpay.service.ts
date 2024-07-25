@@ -92,7 +92,7 @@ export class RazorpayService {
   addingCredit(amount:any){
     const api='https://api.coolieno1.in/v1.0/providers/provider-credits'
     const requestBody={
-      userId:this.userId,
+      providerId:this.userId,
       amount:amount
     }
     return this.http.post(api,requestBody).subscribe(
@@ -120,5 +120,10 @@ export class RazorpayService {
         console.log(err);
       }
     )
+  }
+
+  getCreditHistory(){
+    const api=`https://api.coolieno1.in/v1.0/providers/provider-credits/${this.userId}`
+    return this.http.get<any>
   }
 }

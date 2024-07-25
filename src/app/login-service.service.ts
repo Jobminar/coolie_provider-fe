@@ -202,7 +202,7 @@ export class LoginServiceService {
       (response: any) => {
         console.log('Success', response);
         this.userFromServer = response;
-        this.router.navigate(['home']);
+        this.router.navigate(['aadharVerify']);
       },
       (error: HttpErrorResponse) => {
         console.error('Error', error);

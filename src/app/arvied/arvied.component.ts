@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapBoxService } from '../map-box.service';
 import { OrdersService } from '../orders.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-arvied',
@@ -11,9 +12,15 @@ import { OrdersService } from '../orders.service';
 export class ArviedComponent implements OnInit{
  toggleChecked:boolean=false
   userFullAddress:any;
+
+
+  navTOBack(){
+    this.location.back()
+  }
  constructor(private router:Router,
             private mapboxService:MapBoxService,
-            private orderService:OrdersService
+            private orderService:OrdersService,
+            private location:Location
  ){
 
  }

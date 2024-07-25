@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OrdersService } from '../orders.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-verify-after-work',
@@ -15,9 +16,12 @@ export class VerifyAfterWorkComponent {
   @ViewChild('input4') input4!: ElementRef 
   otp: FormGroup;
 
+  navTOBack(){
+    this.location.back()
+  }
   constructor(private form: FormBuilder,
             private orderService:OrdersService,
-              private router:Router)
+              private router:Router,private location:Location)
   { 
                
     this.otp = this.form.group({

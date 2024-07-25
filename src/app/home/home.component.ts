@@ -112,7 +112,8 @@ export class HomeComponent implements OnInit {
     
   }
   workingDates(){
-   this.nextWorking=this.dates
+   this.nextWorking=this.dates.splice(0,2);
+   console.log(this.nextWorking);
   }
   getAvalibility(){
     this.jobDetailsService.getAvailability().subscribe(
@@ -144,32 +145,52 @@ export class HomeComponent implements OnInit {
     const today = new Date(); // Get the current date
 
     for (let index = 0; index < dates.length; index++) {
-     
       const element = dates[index];
-      
       const date = element.date.split('T')[0];
-      
       const currentDate = new Date(date);
-     
       const day = this.dayNames[currentDate.getDay()];
       const month = this.monthNames[currentDate.getMonth()];
-      const year=currentDate.getFullYear()
+      const year = currentDate.getFullYear();
       const dateSelected = currentDate.getDate();
-      
+    
       // Check if the date is today or later
       if (currentDate >= today || currentDate.toDateString() === today.toDateString()) {
-       
-        this.dates.push({
-                        date:dateSelected,
-                        day:day,
-                        month:month,
-                        isWorking:'working'})
+        // Check for duplicates
+        const isDuplicate = this.dates.some(
+          d => d.date === dateSelected && d.day === day && d.month === month && d.year === year
+        );
+    
+        if (!isDuplicate) {
+          this.dates.push({
+            date: dateSelected,
+            day: day,
+            month: month,
+            year: year,
+            isWorking: 'working'
+          });
+    
+          // Sort dates after adding
+          this.dates.sort((a, b) => {
+            // Convert month names to zero-based index for Date constructor
+            const monthIndexA = this.monthNames.indexOf(a.month);
+            const monthIndexB = this.monthNames.indexOf(b.month);
+    
+            // Ensure indices are valid
+            if (monthIndexA === -1 || monthIndexB === -1) {
+              return 0; // Or handle this case differently if needed
+            }
+    
+            const dateA = new Date(a.year, monthIndexA, a.date);
+            const dateB = new Date(b.year, monthIndexB, b.date);
+            return dateA.getTime() - dateB.getTime(); // Compare time values
+          });
+        }
+        
       }
-      if (this.dates.length>1) {
-        break;
-      }
+    
+      
     }
-  
+    this.workingDates()
   }
  
   credits:number=0

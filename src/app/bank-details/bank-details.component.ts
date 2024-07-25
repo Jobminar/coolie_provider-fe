@@ -92,7 +92,7 @@ export class BankDetailsComponent {
     formData.append('accountName', this.bankDetails.value.accountName);
     formData.append('userId', localStorage.getItem('providerId') || '');
     formData.append('aadhaarNumber',this.bankDetails.value.aadhaarNumber)
-    formData.append('gst', 'ABC123');  // Replace with the actual GST if required
+    formData.append('gst', 'ABC121');  // Replace with the actual GST if required
     formData.append('accountNumber', this.bankDetails.value.accountNumber);
     formData.append('pan', this.bankDetails.value.PANNumber);
     formData.append('bankName', this.bankDetails.value.bankName);
@@ -102,7 +102,7 @@ export class BankDetailsComponent {
     this.http.post(api, formData).subscribe(
       (response) => {
         console.log(response);
-        this.router.navigate(['waiting']);
+        this.router.navigate(['induction']);
       },
       (error) => {
         console.log(error);

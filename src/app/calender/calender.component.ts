@@ -774,10 +774,12 @@ export class CalenderComponent {
     this.http.post(this.api, requestBody).subscribe(
       response => {
         console.log(response);
+        alert("Availabity added sucessfully");
         this.getDetails();
       },
       error => {
         console.log(error);
+        alert("Something went wrong");
       }
     );
   }

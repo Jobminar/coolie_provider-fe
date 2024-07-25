@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OrdersService } from '../orders.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-work-complete',
@@ -9,8 +10,11 @@ import { Router } from '@angular/router';
 })
 export class WorkCompleteComponent {
   total: number = 0;
+  navTOBack(){
+    this.location.back()
+  }
   constructor(private orderService: OrdersService,
-              private router:Router
+              private router:Router,private location:Location
   ) {
     // console.log( this.orderService.oredrDetails);
     // const order:any = this.orderService.oredrDetails;

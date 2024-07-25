@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrdersService } from '../orders.service';
 import { MapBoxService } from '../map-box.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-start-work',
@@ -11,9 +12,14 @@ import { MapBoxService } from '../map-box.service';
 export class StartWorkComponent {
   toggleChecked:boolean=false
   userFullAddress:any;
+
+  navTOBack(){
+    this.location.back()
+  }
   constructor(private router:Router,
     private orderService:OrdersService,
-    private mapboxService:MapBoxService){
+    private mapboxService:MapBoxService,
+    private location:Location){
     this.intalizeMap();
   }
   async intalizeMap(){

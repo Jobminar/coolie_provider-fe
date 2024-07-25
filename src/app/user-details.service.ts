@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserDetailsService {
 
+  userRegistered:any;
   constructor(private http:HttpClient) { }
 
   api:string='https://api.coolieno1.in/v1.0'

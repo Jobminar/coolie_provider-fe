@@ -4,10 +4,12 @@
   
     position: relative;
     left: 2.5%;
+    top: 2.5%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin-top: 2.5%;
+    
+    
 }
 .arival-status{
     width: 100%;

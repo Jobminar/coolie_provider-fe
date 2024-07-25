@@ -317,7 +317,7 @@ video {
   height: 6rem;
   border-radius: 50%;
   position: fixed;
-  top: 82%;
+  bottom: 70px;
   left: 40%;
   display: flex;
   align-items: center;
