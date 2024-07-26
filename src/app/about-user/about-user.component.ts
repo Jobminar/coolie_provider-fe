@@ -230,7 +230,7 @@ export class AboutUserComponent implements OnInit {
     formData.append('age', this.aboutProvider.value.age);
     formData.append('pincode', this.aboutProvider.value.pincode);
     formData.append('radius', this.aboutProvider.value.radius);
-    formData.append('userId', this.aboutProvider.value.userId);
+    formData.append('providerId', this.aboutProvider.value.userId);
     formData.append('gender', this.aboutProvider.value.gender);
     formData.append('address', this.aboutProvider.value.address);
     formData.append('phone', this.loginService.userNumber);

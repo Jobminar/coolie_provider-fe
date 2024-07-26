@@ -759,11 +759,11 @@ export class CalenderComponent {
     if (this.timeSelected!="") {
       this.api = 'https://api.coolieno1.in/v1.0/providers/provider-date';
     } else {
-      this.api = 'https://api.coolieno1.in/v1.0/providers/provider-date//delete';
+      this.api = 'https://api.coolieno1.in/v1.0/providers/provider-date/delete';
     }
    
     const requestBody = {
-      userId: this.userId,
+      providerId: this.userId,
       service: this.selectedService,
       date: this.fullDate,
       work: this.working,

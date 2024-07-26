@@ -13,7 +13,7 @@ export class TargetComponent {
   enteredValue: number = 0;
   maxValue: number = 5; // You can adjust the max value as needed
   // color: string = 'primary'; 
-  minTarget:any=76.6;
+  minTarget:any=0;
   min:any=80;
   divColor:string='black';
   creditBalance:number=50;
@@ -49,7 +49,7 @@ export class TargetComponent {
     this.isDrawerOpen = !this.isDrawerOpen;
     this.router.navigate(['menu'])
   }
-  current: number = 3.2;
+  current: number = 0;
   max: number = 5;
   radius: number = 150;
   semicircle: boolean = true;
@@ -76,14 +76,15 @@ export class TargetComponent {
   }
 
   getTarget(){
-    const api='https://api.coolieno1.in/v1.0/providers/service-provider-targets'
+    const providerId=localStorage.getItem('providerId')
+    const api=`https://api.coolieno1.in/v1.0/providers/service-provider-targets/${providerId}`
     this.http.get<any>(api).subscribe(
       (response)=>{
-        console.log(response[0]);
-        // this.current=response[0].specialRating;
-        this.minTarget=response[0].responseRate
-        this.cancelRate=response[0].cancellationRate;
-        this.workingHours=response[0].totalWorkingHours;
+        console.log(response);
+        this.current=response.specialRating;
+        this.minTarget=response.responseRate
+        this.cancelRate=response.cancellationRate;
+        this.workingHours=response.totalWorkingHours;
         // this.credits=response[0].credits;
       },
       (error)=>{

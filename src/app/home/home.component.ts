@@ -198,8 +198,8 @@ export class HomeComponent implements OnInit {
     this.razorpayService.getCredits().subscribe(
       (res)=>{
         console.log(res);
-        this.razorpayService.userCredit=res.credits
-        this.credits=res.credits
+        this.razorpayService.userCredit=res.creditBalance
+        this.credits=res.creditBalance
       },(err)=>{
         console.log(err);
       }

@@ -75,7 +75,7 @@ export class AwardsComponent {
     
     const formData =new FormData();
     formData.append('image',this.imageForm.value.image)
-    formData.append('userId',this.imageForm.value.user)
+    formData.append('providerId',this.imageForm.value.user)
    
     const api='https://api.coolieno1.in/v1.0/providers/provider-certificate';
     this.http.post(api,formData).subscribe(
@@ -95,7 +95,7 @@ export class AwardsComponent {
     this.selectedDocument=null;
     const api='https://api.coolieno1.in/v1.0/providers/provider-certificate/get';
     const requestBody={
-      userId:this.userId
+      providerId:this.userId
     }
     this.http.post(api,requestBody).subscribe(
       (response)=>{

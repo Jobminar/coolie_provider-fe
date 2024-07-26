@@ -90,9 +90,9 @@ export class BankDetailsComponent {
     
     const formData = new FormData();
     formData.append('accountName', this.bankDetails.value.accountName);
-    formData.append('userId', localStorage.getItem('providerId') || '');
+    formData.append('providerId', localStorage.getItem('providerId') || '');
     formData.append('aadhaarNumber',this.bankDetails.value.aadhaarNumber)
-    formData.append('gst', 'ABC121');  // Replace with the actual GST if required
+    // formData.append('gst', 'ABC121');  // Replace with the actual GST if required
     formData.append('accountNumber', this.bankDetails.value.accountNumber);
     formData.append('pan', this.bankDetails.value.PANNumber);
     formData.append('bankName', this.bankDetails.value.bankName);

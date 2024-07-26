@@ -84,8 +84,8 @@ export class OrdersService {
   }
 
   orderHistory():Observable<any>{
-    const userId=localStorage.getItem('providerId');
-    const api=`https://api.coolieno1.in/v1.0/users/order-history/${userId}`;
+    const providerId=localStorage.getItem('providerId');
+    const api=`https://api.coolieno1.in/v1.0/users/order-history/${providerId}`;
     return this.http.get<any>(api);
 
   }

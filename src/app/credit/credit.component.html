@@ -27,5 +27,20 @@
             {{ button }}
             </button>
         </div>
+        
+        <div class="content">
+            <div class="content-div">
+                @for (item of filteredCreditHistory; track $index) {
+                    <div class="sub-content-div">
+                       <span class="span-div">
+                            <span class="highlight">{{item.date}}</span>
+                            <span class="normal-text">{{item.details}}</span>
+                        </span>
+                        <span class="normal-text">{{item.amount}}</span>
+                    </div>
+                    <div class="line"></div>
+                }
+            </div>
+        </div>
     </div>
 </div>

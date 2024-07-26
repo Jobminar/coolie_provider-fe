@@ -187,7 +187,7 @@ export class MapBoxComponent {
     const api='';
     const userID=localStorage.getItem('providerId')
     const requestBody={
-      userId:userID,
+      providerId:userID,
       cordinates:this.currentLocation
     }
     console.log(requestBody);

@@ -256,7 +256,7 @@ export class MapBoxService {
     const api='https://api.coolieno1.in/v1.0/providers/cordinates';
     const userID=localStorage.getItem('providerId')
     const requestBody={
-      userId:userID,
+      providerId:userID,
       longitude:location[0],
       latitude:location[1]
       

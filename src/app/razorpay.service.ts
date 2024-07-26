@@ -90,10 +90,11 @@ export class RazorpayService {
   }
 
   addingCredit(amount:any){
-    const api='https://api.coolieno1.in/v1.0/providers/provider-credits'
+    const api='https://api.coolieno1.in/v1.0/providers/provider-credits/recharge'
     const requestBody={
       providerId:this.userId,
       amount:amount
+      
     }
     return this.http.post(api,requestBody).subscribe(
       (response)=>{
